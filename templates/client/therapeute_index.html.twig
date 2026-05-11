@@ -2,6 +2,138 @@
 {% block title %}Nos Thérapeutes — MindGrow{% endblock %}
 {% block body %}
 
+{# ══════ MODAL THÉRAPEUTE DÉTAIL ══════ #}
+<div id="th-detail-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(6px);cursor:pointer;" onclick="if(event.target===this){document.getElementById('th-detail-overlay').style.display='none';document.body.style.overflow='';}">
+  <div id="th-detail-box" onclick="event.stopPropagation();" style="position:relative;width:680px;max-width:96vw;max-height:90vh;overflow-y:auto;border-radius:28px;cursor:default;
+    background:rgba(4,16,36,.97);border:1.5px solid rgba(0,229,255,.28);
+    box-shadow:0 0 0 1px rgba(0,229,255,.12),0 32px 80px rgba(0,0,0,.75),0 0 60px rgba(0,229,255,.08);
+    animation:thDetailIn .35s cubic-bezier(.34,1.56,.64,1);">
+
+    <button onclick="document.getElementById('th-detail-overlay').style.display='none';document.body.style.overflow='';" style="position:sticky;top:14px;float:right;margin:14px 16px 0 0;
+      background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.3);color:#00e5ff;
+      width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;z-index:2;transition:all .2s;">✕</button>
+
+    {# Photo banner #}
+    <div id="th-detail-photo" style="height:260px;position:relative;overflow:hidden;border-radius:24px 24px 0 0;
+      background:linear-gradient(135deg,#031628,#065f6e);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <img id="th-detail-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;">
+      <div id="th-detail-emoji" style="font-size:96px;user-select:none;filter:drop-shadow(0 0 28px rgba(0,229,255,.6));">🧑‍⚕️</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,12,28,.9) 0%,transparent 50%);"></div>
+      <div style="position:absolute;bottom:20px;left:24px;right:24px;">
+        <div id="th-detail-name" style="font-size:26px;font-weight:900;color:white;text-shadow:0 2px 12px rgba(0,0,0,.6);"></div>
+        <div id="th-detail-spec-banner" style="display:inline-block;margin-top:6px;
+          background:rgba(0,229,255,.2);backdrop-filter:blur(6px);border:1px solid rgba(0,229,255,.35);
+          color:#b2ebf2;font-size:13px;font-weight:700;padding:4px 14px;border-radius:20px;"></div>
+      </div>
+    </div>
+
+    {# Body #}
+    <div id="th-detail-body" style="padding:26px 30px 30px;">
+
+      {# Certified badge #}
+      <div id="th-detail-certified" style="display:none;margin-bottom:16px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;
+          background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,188,212,.12));
+          color:#00e5ff;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:700;
+          border:1px solid rgba(0,229,255,.3);box-shadow:0 0 14px rgba(0,229,255,.15);">
+          ✅ Certifié MindGrow
+        </span>
+      </div>
+
+      {# Stars #}
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span id="th-detail-stars" style="font-size:24px;color:#f59e0b;letter-spacing:2px;"></span>
+        <span id="th-detail-note" style="font-size:15px;color:#00e5ff;font-weight:700;"></span>
+        <span id="th-detail-nb" style="font-size:13px;color:rgba(180,220,255,.45);"></span>
+      </div>
+
+      {# Contact info #}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;">
+        <div id="th-detail-email-wrap" style="display:none;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.14);border-radius:14px;padding:12px 16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.5px;color:rgba(0,229,255,.55);text-transform:uppercase;margin-bottom:4px;">Email</div>
+          <div id="th-detail-email" style="font-size:14px;color:#e0f7fa;word-break:break-all;"></div>
+        </div>
+        <div id="th-detail-tel-wrap" style="display:none;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.14);border-radius:14px;padding:12px 16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.5px;color:rgba(0,229,255,.55);text-transform:uppercase;margin-bottom:4px;">Téléphone</div>
+          <div id="th-detail-tel" style="font-size:14px;color:#e0f7fa;"></div>
+        </div>
+      </div>
+
+      {# Member since #}
+      <div id="th-detail-since-wrap" style="margin-bottom:22px;font-size:13px;color:rgba(180,220,255,.5);">
+        <span id="th-detail-since"></span>
+      </div>
+
+      {# Reviews in modal #}
+      <div id="th-detail-cmts-section" style="display:none;">
+        <div id="th-detail-cmts-title" style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+          color:rgba(0,229,255,.6);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <span class="th-modal-line" style="flex:1;height:1px;background:rgba(0,229,255,.12);display:block;"></span>
+          Avis clients
+          <span class="th-modal-line" style="flex:1;height:1px;background:rgba(0,229,255,.12);display:block;"></span>
+        </div>
+        <div id="th-detail-cmts" style="display:flex;flex-direction:column;gap:12px;max-height:300px;overflow-y:auto;padding-right:4px;">
+        </div>
+      </div>
+      <div id="th-detail-no-cmts" style="text-align:center;padding:24px;color:rgba(180,220,255,.3);font-size:13px;font-style:italic;">
+        Aucun avis pour le moment ✨
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes thDetailIn {
+  from { opacity:0; transform:scale(.88) translateY(30px); }
+  to   { opacity:1; transform:scale(1)   translateY(0); }
+}
+[data-theme="light"] #th-detail-overlay { background: rgba(0,0,0,.45) !important; }
+[data-theme="light"] #th-detail-box {
+  background: #ffffff !important;
+  border-color: rgba(11,122,143,.25) !important;
+  box-shadow: 0 0 0 1px rgba(11,122,143,.12), 0 32px 80px rgba(0,0,0,.2), 0 0 40px rgba(11,122,143,.05) !important;
+}
+[data-theme="light"] #th-detail-box > button {
+  background: rgba(11,122,143,.1) !important;
+  border-color: rgba(11,122,143,.3) !important;
+  color: #0b7a8f !important;
+}
+[data-theme="light"] #th-detail-certified span {
+  background: linear-gradient(135deg,rgba(11,122,143,.12),rgba(6,95,110,.08)) !important;
+  color: #065f6e !important;
+  border-color: rgba(11,122,143,.28) !important;
+  box-shadow: none !important;
+}
+[data-theme="light"] #th-detail-stars  { color: #f59e0b !important; }
+[data-theme="light"] #th-detail-note   { color: #0b7a8f !important; }
+[data-theme="light"] #th-detail-nb     { color: #94a3b8 !important; }
+[data-theme="light"] #th-detail-email-wrap,
+[data-theme="light"] #th-detail-tel-wrap {
+  background: rgba(11,122,143,.05) !important;
+  border-color: rgba(11,122,143,.15) !important;
+}
+[data-theme="light"] #th-detail-email-wrap > div:first-child,
+[data-theme="light"] #th-detail-tel-wrap   > div:first-child { color: rgba(11,122,143,.6) !important; }
+[data-theme="light"] #th-detail-email,
+[data-theme="light"] #th-detail-tel        { color: #1e293b !important; }
+[data-theme="light"] #th-detail-since      { color: #64748b !important; }
+[data-theme="light"] #th-detail-cmts-title { color: rgba(11,122,143,.65) !important; }
+[data-theme="light"] .th-modal-line        { background: rgba(11,122,143,.15) !important; }
+[data-theme="light"] #th-detail-cmts .cmt-card {
+  background: rgba(11,122,143,.05) !important;
+  border-color: rgba(11,122,143,.12) !important;
+}
+[data-theme="light"] #th-detail-cmts .cmt-text  { color: #334155 !important; }
+[data-theme="light"] #th-detail-cmts .cmt-stars { color: #f59e0b !important; }
+[data-theme="light"] #th-detail-cmts .cmt-meta  { color: rgba(11,122,143,.55) !important; }
+[data-theme="light"] #th-detail-cmts .cmt-dot   { background: rgba(11,122,143,.3) !important; }
+[data-theme="light"] #th-detail-no-cmts         { color: #94a3b8 !important; }
+[data-theme="light"] #th-detail-body        { background: #ffffff !important; }
+[data-theme="light"] #th-detail-since-wrap { color: #64748b !important; }
+</style>
+
 {# ══════ MODAL IA ══════ #}
 <div id="ia-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;">
   <div style="background:#f0f0f0;border-radius:8px;width:500px;max-width:95vw;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;font-family:Arial,sans-serif;">
@@ -401,7 +533,18 @@ body { background: #030d1a; }
 {% set nb    = nbAvis[therapeute.id]      is defined ? nbAvis[therapeute.id]      : 0 %}
 {% set avis  = avisList[therapeute.id]    is defined ? avisList[therapeute.id]    : [] %}
 
-<div class="th-card">
+<div class="th-card" style="cursor:pointer;"
+  data-id="{{ therapeute.id }}"
+  data-nom="{{ therapeute.prenom }} {{ therapeute.nom }}"
+  data-spec="{{ therapeute.specialite|default('') }}"
+  data-email="{{ therapeute.email|default('') }}"
+  data-tel="{{ therapeute.telephone|default('') }}"
+  data-img="{{ therapeute.image|default('') }}"
+  data-certified="{{ therapeute.statutCertificat == 'verifie' ? '1' : '0' }}"
+  data-note="{{ note }}"
+  data-nb="{{ nb }}"
+  data-since="{{ therapeute.dateInscription ? therapeute.dateInscription|date('d/m/Y') : '' }}"
+  onclick="openThDetail(this)">
 
   {# Photo / avatar #}
   <div class="th-photo-wrap">
@@ -478,7 +621,8 @@ body { background: #030d1a; }
 
     {# ── LEAVE REVIEW ── #}
     <hr class="avis-sep">
-    <button class="avis-toggle-btn" onclick="toggleAvis({{ therapeute.id }})">
+    <div onclick="event.stopPropagation()">
+    <button class="avis-toggle-btn" onclick="toggleAvis({{ therapeute.id }})" style="cursor:pointer;">
       <span id="avis-icon-{{ therapeute.id }}">✏️</span>
       <span id="avis-label-{{ therapeute.id }}">Laisser un avis</span>
     </button>
@@ -510,6 +654,7 @@ body { background: #030d1a; }
         </button>
       </form>
     </div>
+    </div>{# /stop-propagation wrapper #}
 
   </div>
 </div>
@@ -1040,6 +1185,86 @@ document.addEventListener('DOMContentLoaded',()=>{
   /* ── Init ── */
   updateDots();
   updateButtons();
+});
+</script>
+
+<script>
+/* ══════════════════════════════════
+   THERAPIST DETAIL MODAL
+══════════════════════════════════ */
+function openThDetail(card) {
+  const d = card.dataset;
+  const overlay = document.getElementById('th-detail-overlay');
+
+  /* Name & speciality */
+  document.getElementById('th-detail-name').textContent = d.nom;
+  document.getElementById('th-detail-spec-banner').textContent = d.spec || '';
+
+  /* Photo or emoji */
+  const img   = document.getElementById('th-detail-img');
+  const emoji = document.getElementById('th-detail-emoji');
+  if (d.img) {
+    img.src = d.img; img.style.display = 'block'; emoji.style.display = 'none';
+  } else {
+    img.style.display = 'none'; emoji.style.display = 'block';
+  }
+
+  /* Certified */
+  document.getElementById('th-detail-certified').style.display = d.certified === '1' ? 'block' : 'none';
+
+  /* Stars */
+  const note = parseFloat(d.note) || 0;
+  const nb   = parseInt(d.nb)   || 0;
+  const r    = Math.round(note);
+  document.getElementById('th-detail-stars').textContent = '★'.repeat(r) + '☆'.repeat(5 - r);
+  document.getElementById('th-detail-note').textContent  = nb > 0 ? note + '/5' : 'Aucun avis';
+  document.getElementById('th-detail-nb').textContent    = nb > 0 ? '(' + nb + ' avis)' : '';
+
+  /* Contact */
+  const emailWrap = document.getElementById('th-detail-email-wrap');
+  const telWrap   = document.getElementById('th-detail-tel-wrap');
+  if (d.email) { emailWrap.style.display = 'block'; document.getElementById('th-detail-email').textContent = d.email; }
+  else emailWrap.style.display = 'none';
+  if (d.tel) { telWrap.style.display = 'block'; document.getElementById('th-detail-tel').textContent = d.tel; }
+  else telWrap.style.display = 'none';
+
+  /* Since */
+  const sinceWrap = document.getElementById('th-detail-since-wrap');
+  sinceWrap.style.display = d.since ? 'block' : 'none';
+  document.getElementById('th-detail-since').textContent = d.since ? '📅 Membre depuis le ' + d.since : '';
+
+  /* Reviews — clone from the card's existing comment list */
+  const srcScroll = document.getElementById('cmts-scroll-' + d.id);
+  const destCmts  = document.getElementById('th-detail-cmts');
+  const noEl      = document.getElementById('th-detail-no-cmts');
+  const secEl     = document.getElementById('th-detail-cmts-section');
+
+  destCmts.innerHTML = '';
+  if (srcScroll && srcScroll.children.length > 0) {
+    Array.from(srcScroll.children).forEach(c => destCmts.appendChild(c.cloneNode(true)));
+    secEl.style.display = 'block';
+    noEl.style.display  = 'none';
+  } else {
+    secEl.style.display = 'none';
+    noEl.style.display  = 'block';
+  }
+
+  /* Show overlay */
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeThDetail(e) {
+  if (e && e.target !== document.getElementById('th-detail-overlay') && !e.currentTarget.tagName === 'BUTTON') return;
+  document.getElementById('th-detail-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('th-detail-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
 });
 </script>
 

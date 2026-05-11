@@ -133,30 +133,42 @@ function envoyerIAAbo(texteFixe) {
 
 .plans-grid {
     display:flex; flex-wrap:wrap; gap:28px;
-    justify-content:center; padding-bottom:60px;
+    justify-content:center; padding-bottom:60px; padding-top:24px;
+    align-items:flex-start;
 }
 .plan-card {
-    background:white; border-radius:24px; padding:36px 28px; width:280px;
+    background:white; border-radius:24px; padding:32px 28px 28px; width:300px;
     box-shadow:0 2px 20px rgba(0,0,0,.06); border:2px solid #f1f5f9;
-    transition:all .3s; position:relative; overflow:hidden; display:flex; flex-direction:column;
+    transition:all .3s; position:relative; display:flex; flex-direction:column;
+    margin-top:20px;
 }
-.plan-card:hover { border-color:#0b7a8f; transform:translateY(-10px); box-shadow:0 20px 60px rgba(11,122,143,.18); }
-.plan-card.featured { border-color:#0b7a8f; background:linear-gradient(160deg,#f0fdfb 0%,#e0f5f8 100%); transform:scale(1.04); }
-.plan-card.featured:hover { transform:scale(1.04) translateY(-10px); }
-.plan-badge { position:absolute; top:0; right:0; background:linear-gradient(135deg,#0b7a8f,#065f6e); color:white; font-size:10px; font-weight:800; letter-spacing:1px; padding:6px 18px; border-radius:0 0 0 16px; }
-.plan-duration { display:inline-block; background:#e0f5f8; color:#0b7a8f; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:1px; margin-bottom:20px; text-transform:uppercase; }
-.plan-name { font-size:24px; font-weight:800; color:#1e293b; margin-bottom:4px; }
-.plan-price { display:flex; align-items:baseline; gap:4px; margin:16px 0 4px; }
-.plan-price .amount   { font-size:48px; font-weight:900; color:#0b7a8f; line-height:1; }
-.plan-price .currency { font-size:18px; color:#94a3b8; font-weight:600; }
-.plan-per-month { font-size:12px; color:#94a3b8; margin-bottom:20px; }
-.plan-desc { font-size:14px; color:#64748b; line-height:1.7; border-top:1px solid #f1f5f9; padding-top:16px; margin-bottom:24px; flex:1; }
-.plan-btn { display:block; text-align:center; padding:14px; border-radius:14px; text-decoration:none; font-weight:700; font-size:15px; transition:all .2s; }
-.plan-btn-primary { background:linear-gradient(135deg,#0b7a8f,#065f6e); color:white; box-shadow:0 6px 20px rgba(11,122,143,.3); }
-.plan-btn-primary:hover { box-shadow:0 10px 30px rgba(11,122,143,.45); opacity:.95; }
+.plan-card:hover { border-color:#0b7a8f; transform:translateY(-8px); box-shadow:0 24px 60px rgba(11,122,143,.18); }
+.plan-card.featured { border-color:#0b7a8f; background:linear-gradient(160deg,#f0fdfb 0%,#e6f7f9 100%); }
+.plan-card.featured:hover { transform:translateY(-8px); }
+
+/* Badge top-center ribbon */
+.plan-badge {
+    position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+    background:linear-gradient(135deg,#0b7a8f,#065f6e); color:white;
+    font-size:11px; font-weight:800; letter-spacing:1.5px; padding:5px 18px;
+    border-radius:20px; white-space:nowrap;
+    box-shadow:0 4px 14px rgba(11,122,143,.35);
+}
+
+.plan-duration { display:inline-block; background:#e0f5f8; color:#0b7a8f; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:1px; margin-bottom:16px; text-transform:uppercase; }
+.plan-name { font-size:26px; font-weight:800; color:#1e293b; margin-bottom:0; }
+.plan-price { display:flex; align-items:baseline; gap:6px; margin:14px 0 2px; }
+.plan-price .amount   { font-size:52px; font-weight:900; color:#0b7a8f; line-height:1; }
+.plan-price .currency { font-size:16px; color:#64748b; font-weight:700; }
+.plan-per-month { font-size:13px; color:#64748b; margin-bottom:20px; }
+.plan-per-month strong { color:#0b7a8f; }
+.plan-desc { font-size:14px; color:#64748b; line-height:1.65; border-top:1px solid #e8f4f6; padding-top:16px; margin-bottom:24px; flex:1; }
+.plan-btn { display:block; text-align:center; padding:15px; border-radius:14px; text-decoration:none; font-weight:700; font-size:15px; transition:all .25s; cursor:pointer; border:none; }
+.plan-btn-primary { background:linear-gradient(135deg,#0b7a8f,#065f6e); color:white; box-shadow:0 6px 20px rgba(11,122,143,.28); }
+.plan-btn-primary:hover { box-shadow:0 12px 32px rgba(11,122,143,.42); transform:translateY(-1px); }
 .plan-btn-outline { background:transparent; color:#0b7a8f; border:2px solid #0b7a8f; }
 .plan-btn-outline:hover { background:#0b7a8f; color:white; }
-.plan-btn-active { background:#f0fdf4; color:#166534; border:2px solid #bbf7d0; cursor:default; }
+.plan-btn-active { background:#f0fdf4; color:#166534; border:2px solid #bbf7d0; cursor:default; font-size:15px; }
 
 .plan-active-banner {
     background:linear-gradient(135deg,#059669,#047857); color:white; border-radius:16px; padding:20px 28px;
@@ -458,29 +470,29 @@ function envoyerIAAbo(texteFixe) {
 
 <div class="plan-card {{ isFeatured ? 'featured' : '' }}">
     {% if isFeatured %}<div class="plan-badge">⭐ POPULAIRE</div>{% endif %}
-    <div>
-        <span class="plan-duration">{{ abo.dureeMois }} mois</span>
-        <div class="plan-name">{{ abo.nom }}</div>
-    </div>
+
+    <span class="plan-duration">{{ abo.dureeMois }} MOIS</span>
+    <div class="plan-name">{{ abo.nom }}</div>
+
     <div class="plan-price">
-        <span class="amount prix-converti" data-tnd="{{ abo.prix }}">{{ abo.prix }}</span>
+        <span class="amount prix-converti" data-tnd="{{ abo.prix }}">{{ abo.prix|number_format(3, ',', ' ') }}</span>
         <span class="currency devise-label-card">TND</span>
     </div>
     {% if prixParMois %}
     <div class="plan-per-month">
-        soit <strong class="mois-converti" data-tnd="{{ prixParMois }}">{{ prixParMois }}</strong>
+        soit <strong class="mois-converti" data-tnd="{{ prixParMois }}">{{ prixParMois|number_format(3, ',', ' ') }}</strong>
         <span class="devise-label-card">TND</span>/mois
     </div>
     {% endif %}
+
     <div class="plan-desc">{{ abo.description ?? 'Accès complet à toutes les fonctionnalités MindGrow.' }}</div>
+
     {% if isActif %}
         <span class="plan-btn plan-btn-active">✓ Plan actuel</span>
-        {% if achatActif and achatActif.idAbonnement == abo.id %}
         <a href="{{ path('abonnement_recu', {id: achatActif.id}) }}" target="_blank"
-           class="plan-btn" style="background:#f0f9ff;color:#0b7a8f;border:2px solid #bae6fd;margin-top:8px;font-size:13px;text-decoration:none;display:block;text-align:center;border-radius:12px;padding:10px;">
+           class="plan-btn" style="background:white;color:#0b7a8f;border:2px solid #0b7a8f;margin-top:10px;font-size:13px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:14px;padding:12px;">
             📄 Télécharger mon reçu PDF
         </a>
-        {% endif %}
     {% else %}
         <a href="{{ path('abonnement_paiement', {id: abo.id}) }}"
            class="plan-btn {{ isFeatured ? 'plan-btn-primary' : 'plan-btn-outline' }}">
