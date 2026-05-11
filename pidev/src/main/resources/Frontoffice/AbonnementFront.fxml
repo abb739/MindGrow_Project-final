@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" prefHeight="700.0" prefWidth="1100.0" styleClass="front-scroll-pane" 
+            stylesheets="@front.css" 
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="org.example.controller.Frontoffice.AbonnementFrontController">
+   <content>
+      <VBox alignment="TOP_CENTER" spacing="30.0" styleClass="front-container">
+         <children>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label text="Nos Offres d'Abonnement" styleClass="auth-title" />
+                  <Label text="Choisissez la formule qui vous ressemble pour profiter pleinement de MindGrow." styleClass="front-header-subtitle" />
+               </children>
+            </VBox>
+ 
+            <HBox alignment="CENTER" spacing="20.0" styleClass="front-filter-bar">
+               <children>
+                  <TextField fx:id="searchField" prefHeight="45.0" prefWidth="400.0" promptText="🔍 Rechercher par nom..." styleClass="front-search-field-small" />
+                  <ComboBox fx:id="sortComboBox" prefHeight="45.0" prefWidth="250.0" promptText="Trier par prix" styleClass="front-combo-box" />
+               </children>
+            </HBox>
+ 
+            <Separator style="-fx-max-width: 800;" />
+ 
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <Button onAction="#handleShowMyOffer" prefHeight="50.0" prefWidth="200.0" styleClass="btn-secondary-modern" text="💎 Mon Offre" />
+                  <HBox fx:id="subscribeBox" alignment="CENTER" spacing="15.0">
+                     <children>
+                        <Label text="S'abonner à :" textFill="#4a4a4a" style="-fx-font-weight: bold; -fx-font-size: 15px;" />
+                        <ComboBox fx:id="offersComboBox" prefHeight="50.0" prefWidth="300.0" promptText="Choisir un forfait..." styleClass="front-combo-box" />
+                        <Button onAction="#handleSubscribe" prefHeight="50.0" prefWidth="150.0" styleClass="btn-primary-modern" text="Confirmer" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+ 
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Label text="Devise :" textFill="#4a4a4a" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                  <ComboBox fx:id="currencyComboBox" prefHeight="40.0" prefWidth="150.0" styleClass="front-combo-box" />
+                  <Button onAction="#handleRefreshPrices" styleClass="btn-outline-modern" text="Actualiser les prix" />
+               </children>
+            </HBox>
+            
+            <FlowPane fx:id="cardsContainer" alignment="CENTER" hgap="30.0" vgap="30.0" styleClass="front-cards-container">
+               <!-- Les cartes seront injectées ici dynamiquement -->
+            </FlowPane>
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

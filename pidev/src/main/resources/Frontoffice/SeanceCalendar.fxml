@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="750.0" prefWidth="900.0" spacing="25.0" styleClass="front-container-main" stylesheets="@front.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Frontoffice.SeanceCalendarController">
+   <children>
+      <HBox alignment="CENTER" spacing="25.0" styleClass="filter-bar">
+         <children>
+            <Button onAction="#handlePreviousMonth" styleClass="nav-button" text="◀" />
+            <Label fx:id="monthYearLabel" text="Mars 2026" styleClass="auth-title" />
+            <Button onAction="#handleNextMonth" styleClass="nav-button" text="▶" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleToday" styleClass="btn-outline-modern" text="Aujourd'hui" />
+         </children>
+      </HBox>
+      
+      <GridPane fx:id="dayNamesGrid" hgap="5" vgap="5">
+         <!-- Will be populated in controller -->
+      </GridPane>
+      
+      <GridPane fx:id="calendarGrid" hgap="10" vgap="10" VBox.vgrow="ALWAYS">
+         <!-- Will be populated in controller -->
+      </GridPane>
+      
+      <VBox fx:id="seanceListContainer" prefHeight="200.0" spacing="15.0" styleClass="auth-card">
+         <children>
+            <Label fx:id="selectedDateLabel" text="Séances du jour" styleClass="profil-title" />
+            <ScrollPane fitToWidth="true" styleClass="cards-scroll" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="seancesDayList" spacing="10.0" style="-fx-padding: 5;" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</VBox>

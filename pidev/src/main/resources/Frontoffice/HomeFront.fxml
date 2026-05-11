@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" styleClass="home-scroll" stylesheets="@front.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Frontoffice.HomeFrontController">
+   <content>
+      <VBox spacing="40.0" styleClass="home-container">
+         <children>
+            <!-- Hero Section -->
+            <StackPane prefHeight="350.0" styleClass="hero-section">
+               <children>
+                  <ImageView fx:id="heroImage" fitHeight="350.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="false" styleClass="hero-image">
+                     <!-- Image choice: something calming or growth related -->
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" spacing="20.0" styleClass="hero-overlay">
+                     <children>
+                        <Label styleClass="hero-title" text="Bienvenue sur MindGrow" />
+                        <Label styleClass="hero-subtitle" text="Cultivez votre bien-être mental avec nos programmes personnalisés." wrapText="true" />
+                        <Button mnemonicParsing="false" onAction="#handleExploreProgrammes" styleClass="btn-primary-modern" text="Explorer les Programmes" />
+                     </children>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </StackPane>
+
+            <!-- Previews Section -->
+            <VBox spacing="30.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Label styleClass="section-title" text="Aperçu des Services" />
+                     </children>
+                  </HBox>
+
+                  <HBox spacing="25.0" alignment="CENTER">
+                     <children>
+                        <!-- Programmes Preview Card -->
+                        <VBox spacing="15.0" styleClass="summary-card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-category" text="📜 Programmes" />
+                              <Label fx:id="progCountLabel" styleClass="card-stats" text="Des dizaines de parcours" />
+                              <Label styleClass="card-description" text="Trouvez le programme qui vous correspond parmi nos thématiques variées." wrapText="true" />
+                              <Button mnemonicParsing="false" onAction="#handleExploreProgrammes" styleClass="btn-outline-modern" text="Voir tout" />
+                           </children>
+                        </VBox>
+
+                        <!-- Seances Preview Card -->
+                        <VBox spacing="15.0" styleClass="summary-card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-category" text="📅 Séances" />
+                              <Label fx:id="seanceCountLabel" styleClass="card-stats" text="Planifiez vos moments" />
+                              <Label styleClass="card-description" text="Consultez le calendrier et réservez vos prochaines séances en un clic." wrapText="true" />
+                              <Button mnemonicParsing="false" onAction="#handleExploreSeances" styleClass="btn-outline-modern" text="Voir le calendrier" />
+                           </children>
+                        </VBox>
+
+                        <!-- Therapeutes Preview Card -->
+                        <VBox spacing="15.0" styleClass="summary-card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-category" text="🧘 Thérapeutes" />
+                              <Label fx:id="therapeuteCountLabel" styleClass="card-stats" text="Experts à votre écoute" />
+                              <Label styleClass="card-description" text="Découvrez nos professionnels certifiés prêts à vous accompagner." wrapText="true" />
+                              <Button mnemonicParsing="false" onAction="#handleExploreTherapeutes" styleClass="btn-outline-modern" text="Découvrir" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            
+            <!-- Motivational Footer -->
+            <VBox alignment="CENTER" spacing="10.0" styleClass="home-footer">
+               <children>
+                  <Label styleClass="footer-quote" text="&quot;Le plus grand voyage commence par un simple pas.&quot;" />
+                  <Label styleClass="footer-sub" text="MindGrow est là pour chaque étape de votre progression." />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="40.0" top="20.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

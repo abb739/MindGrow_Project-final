@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="750.0" prefWidth="1100.0" styleClass="front-container" 
+            stylesheets="@front.css" 
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="org.example.controller.Frontoffice.ClientDashboardController">
+   <children>
+      <!-- NavBar Supérieure Modérée -->
+      <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="1100.0" styleClass="front-navbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="🌱 MindGrow" styleClass="navbar-logo">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+            <Pane HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#showHomeView" styleClass="nav-button" text="Accueil" />
+                  <Button mnemonicParsing="false" onAction="#showProgrammesView" styleClass="nav-button" text="Programmes" />
+                  <Button mnemonicParsing="false" onAction="#showSeancesView" styleClass="nav-button" text="Séances" />
+                  <Button mnemonicParsing="false" onAction="#showAbonnementsView" styleClass="nav-button" text="Abonnements" />
+                  <Button mnemonicParsing="false" onAction="#showTherapeutesView" styleClass="nav-button" text="Thérapeutes" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#showProfilView" styleClass="btn-primary-modern-small" text="Mon Profil">
+               <HBox.margin>
+                  <Insets left="40.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <ToggleButton fx:id="darkModeToggle" mnemonicParsing="false" onAction="#handleDarkModeToggle" styleClass="theme-toggle-button" text="🌙 Mode sombre">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="btn-logout" text="Quitter">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+
+      <!-- Contenu Principal -->
+      <VBox fx:id="profilView" alignment="TOP_CENTER" maxWidth="500.0" spacing="25.0" styleClass="auth-card" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="140.0">
+         <children>
+            <Label text="Mon Profil" styleClass="auth-title">
+               <VBox.margin>
+                  <Insets top="10.0" bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            
+            <VBox spacing="8.0">
+                <Label text="NOM" styleClass="profil-label" />
+                <TextField fx:id="nomField" prefHeight="45.0" styleClass="auth-input" />
+            </VBox>
+            
+            <VBox spacing="8.0">
+                <Label text="PRÉNOM" styleClass="profil-label" />
+                <TextField fx:id="prenomField" prefHeight="45.0" styleClass="auth-input" />
+            </VBox>
+            
+            <VBox spacing="8.0">
+                <Label text="EMAIL" styleClass="profil-label" />
+                <TextField fx:id="emailField" prefHeight="45.0" styleClass="auth-input" />
+            </VBox>
+            
+            <VBox spacing="8.0">
+                <Label text="NOUVEAU MOT DE PASSE" styleClass="profil-label" />
+                <PasswordField fx:id="passwordField" prefHeight="45.0" styleClass="auth-input" promptText="Laissez vide si inchangé" />
+            </VBox>
+            
+            <Label fx:id="messageLabel" styleClass="profil-message" />
+            
+            <HBox alignment="CENTER" spacing="20.0">
+               <VBox.margin>
+                  <Insets top="15.0" bottom="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="180.0" styleClass="btn-primary-modern" text="💾 Enregistrer" />
+                  <Button mnemonicParsing="false" onAction="#handleDelete" prefHeight="45.0" prefWidth="180.0" styleClass="btn-logout" text="🗑 Supprimer Compte" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      
+      <VBox fx:id="homeView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <VBox fx:id="programmesView" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <VBox fx:id="seancesView" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <VBox fx:id="abonnementsView" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <VBox fx:id="therapeutesView" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+
+
+   </children>
+</AnchorPane>
+

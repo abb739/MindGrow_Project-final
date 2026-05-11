@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefWidth="400.0" spacing="25.0" styleClass="timer-dialog-container" stylesheets="@front.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Frontoffice.TimerDialogController">
+   <children>
+      <Label styleClass="timer-title" text="Minuteur de Séance" />
+      
+      <VBox alignment="CENTER" spacing="10.0" styleClass="timer-display-container">
+         <children>
+            <Label fx:id="timerLabel" styleClass="timer-display" text="00:00">
+               <font>
+                  <Font name="System Bold" size="64.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      
+      <HBox alignment="CENTER" spacing="15.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label styleClass="timer-input-label" text="Minutes" />
+                  <TextField fx:id="minutesInput" prefWidth="80.0" promptText="0" styleClass="timer-input-field" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Button fx:id="startBtn" mnemonicParsing="false" onAction="#handleStart" styleClass="timer-btn-start" text="Démarrer" />
+            <Button fx:id="pauseBtn" disable="true" mnemonicParsing="false" onAction="#handlePause" styleClass="timer-btn-pause" text="Pause" />
+            <Button mnemonicParsing="false" onAction="#handleReset" styleClass="timer-btn-reset" text="Réinitialiser" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+   </padding>
+</VBox>

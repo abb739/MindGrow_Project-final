@@ -1,0 +1,157 @@
+/*
+ * MindGrow - Réservations Frontoffice
+ * Styles TableView, badges, actions
+ */
+
+/* ========== TABLE CARD ========== */
+.table-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 5);
+}
+
+.table-container {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 5);
+}
+
+/* ========== TABLEVIEW ========== */
+.table-view-modern {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+}
+
+.table-view-modern .column-header-background {
+    -fx-background-color: #f7f7f7;
+    -fx-padding: 0;
+}
+
+.table-view-modern .column-header {
+    -fx-background-color: transparent;
+    -fx-padding: 14 12;
+    -fx-border-color: transparent transparent #e5e5e5 transparent;
+}
+
+.table-view-modern .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6b6b6b;
+}
+
+.table-view-modern .table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-view-modern .table-row-cell:odd {
+    -fx-background-color: #fafafa;
+}
+
+.table-view-modern .table-row-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.table-view-modern .table-row-cell:filled:selected {
+    -fx-background-color: #f1f5f9;
+}
+
+.table-view-modern .table-cell {
+    -fx-padding: 12;
+    -fx-font-size: 14px;
+}
+
+.table-view-modern .table-cell.table-col-center {
+    -fx-alignment: center;
+}
+
+/* ========== BADGES ========== */
+.badge-upcoming {
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #4a4a4a;
+    -fx-padding: 6 12;
+    -fx-background-radius: 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10;
+}
+
+.badge-ongoing {
+    -fx-background-color: #f0fdf4;
+    -fx-text-fill: #166534;
+    -fx-padding: 6 12;
+    -fx-background-radius: 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-done {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #475569;
+    -fx-padding: 6 12;
+    -fx-background-radius: 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-avenir-small {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4a4a4a;
+}
+
+.badge-encours-small {
+    -fx-font-size: 12px;
+    -fx-text-fill: #166534;
+}
+
+.badge-terminee-small {
+    -fx-font-size: 12px;
+    -fx-text-fill: #475569;
+}
+
+/* ========== ACTION BUTTONS (préparés pour cellFactory) ========== */
+/* ========== ACTION BUTTONS ========== */
+.btn-action-view {
+    -fx-background-color: #A2D5AB;
+    -fx-text-fill: #4a4a4a;
+    -fx-font-size: 13px;
+    -fx-padding: 6 15;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-action-view:hover {
+    -fx-background-color: #8cc497;
+}
+
+.btn-action-edit {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #4a4a4a;
+    -fx-font-size: 13px;
+    -fx-padding: 5 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 10;
+}
+
+.btn-action-edit:hover {
+    -fx-border-color: #A2D5AB;
+}
+
+.btn-action-cancel {
+    -fx-background-color: #ff7675;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 6 15;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-action-cancel:hover {
+    -fx-background-color: #ff5e5c;
+}

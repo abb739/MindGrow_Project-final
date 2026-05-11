@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="700.0" prefWidth="1100.0" spacing="0.0" styleClass="content-area" stylesheets="@global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Backoffice.AbonnementController">
+    <children>
+        <!-- Header Section -->
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" styleClass="header-section">
+            <children>
+                <VBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Gestion des Abonnements" styleClass="header-title" />
+                        <Label text="Configurez vos offres et packs d'abonnement pour vos clients." styleClass="header-subtitle" />
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleRefresh" styleClass="btn-outline" text="🔄 Actualiser" />
+            </children>
+        </HBox>
+        
+        <HBox spacing="30.0" VBox.vgrow="ALWAYS" style="-fx-padding: 30;">
+            <children>
+                <!-- Formulaire -->
+                <VBox maxWidth="400.0" minWidth="400.0" spacing="25.0" styleClass="card" HBox.hgrow="NEVER">
+                    <children>
+                        <Label text="Détails de l'Offre" styleClass="section-title" />
+                        
+                        <VBox spacing="8.0">
+                            <Label text="NOM DE L'OFFRE" styleClass="label" />
+                            <TextField fx:id="nomField" promptText="Ex: Pack Premium" />
+                        </VBox>
+                        <VBox spacing="8.0">
+                            <Label text="DESCRIPTION DES AVANTAGES" styleClass="label" />
+                            <TextArea fx:id="descriptionArea" prefHeight="120.0" promptText="Avantages et services inclus..." wrapText="true" />
+                        </VBox>
+                        
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                    <Label text="PRIX (TND)" styleClass="label" />
+                                    <TextField fx:id="prixField" promptText="Ex: 99.99" />
+                                </VBox>
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                    <Label text="DURÉE (MOIS)" styleClass="label" />
+                                    <ComboBox fx:id="dureeComboBox" prefWidth="200.0" promptText="Sélectionner..." />
+                                </VBox>
+                            </children>
+                        </HBox>
+                        
+                        <HBox spacing="15.0" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+                            <children>
+                                <Button fx:id="btnSave" onAction="#handleSave" prefWidth="180.0" styleClass="btn-primary" text="Enregistrer" />
+                                <Button onAction="#handleClear" prefWidth="120.0" styleClass="btn-secondary" text="Vider" />
+                            </children>
+                        </HBox>
+                        <VBox spacing="12.0">
+                            <children>
+                                <Button onAction="#handleShowStatistics" prefWidth="Infinity" styleClass="btn-outline" text="📊 Statistiques par Durée" />
+                                <Button onAction="#handleExportCSV" prefWidth="Infinity" styleClass="btn-outline" text="📥 Exporter en CSV" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                
+                <!-- TableView -->
+                <VBox HBox.hgrow="ALWAYS" spacing="20.0">
+                    <children>
+                        <HBox spacing="15.0" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 15 25;">
+                            <children>
+                                <TextField fx:id="searchField" prefHeight="45.0" prefWidth="350.0" promptText="🔍 Rechercher une offre par nom..." />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Liste des offres actives" styleClass="header-subtitle" />
+                            </children>
+                        </HBox>
+                        <TableView fx:id="abonnementTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                                <TableColumn fx:id="colNom" prefWidth="180.0" text="Nom" />
+                                <TableColumn fx:id="colDescription" prefWidth="280.0" text="Description" />
+                                <TableColumn fx:id="colPrix" prefWidth="100.0" text="Prix" />
+                                <TableColumn fx:id="colDuree" prefWidth="100.0" text="Durée" />
+                                <TableColumn fx:id="colActions" prefWidth="150.0" text="Actions" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

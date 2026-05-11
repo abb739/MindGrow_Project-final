@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Map Picker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            cursor: crosshair;
+        }
+
+        .info-box {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="info-box" id="info">Cliquez sur la carte pour choisir un lieu</div>
+
+    <script>
+        var map = L.map('map').setView([36.8065, 10.1815], 10);
+
+        // Utilisation de CartoDB Voyager (plus permissif et gratuit basé sur OSM)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        var marker;
+
+        map.on('click', function (e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+
+            // Reverse Geocoding (Nominatim)
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.display_name;
+                    document.getElementById('info').innerHTML = "<b>Lieu sélectionné :</b><br>" + address;
+                    // On expose l'adresse pour que JavaFX puisse la lire
+                    window.selectedAddress = address;
+                    window.selectedCoords = lat + ", " + lng;
+                })
+                .catch(err => {
+                    console.error(err);
+                    window.selectedAddress = lat + ", " + lng;
+                    window.selectedCoords = lat + ", " + lng;
+                });
+        });
+
+        // Fonction appelée par Java pour récupérer la valeur
+        function getSelectedLocation() {
+            return window.selectedAddress || "";
+        }
+    </script>
+</body>
+
+</html>

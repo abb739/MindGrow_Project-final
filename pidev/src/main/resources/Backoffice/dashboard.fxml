@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="main-container" fx:controller="org.example.controller.Backoffice.DashboardController">
+
+    <!-- En-tête -->
+    <top>
+        <VBox styleClass="header-section">
+            <Label text="📊 MindGrow Dashboard" styleClass="header-title"/>
+            <Label text="Vue d'ensemble de votre plateforme MindGrow" styleClass="header-subtitle">
+                <VBox.margin>
+                    <Insets top="5"/>
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <VBox spacing="30" styleClass="main-container">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+
+                <!-- Section: Statistiques Utilisateurs -->
+                <VBox spacing="15">
+                    <Label text="👥 Statistiques des Comptes" styleClass="section-title"/>
+
+                    <GridPane hgap="20" vgap="20">
+                        <!-- Carte 1: Total Utilisateurs -->
+                        <VBox spacing="10" styleClass="stat-card" GridPane.columnIndex="0">
+                            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <Label text="👥" style="-fx-font-size: 48px;"/>
+                                <VBox spacing="5">
+                                    <Label text="Total Utilisateurs" styleClass="label" style="-fx-font-size: 14px;"/>
+                                    <Label fx:id="lblTotalUsers" text="0"
+                                           style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #a2d5ab;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+ 
+                        <!-- Carte 2: Total Admins -->
+                        <VBox spacing="10" styleClass="stat-card" GridPane.columnIndex="1">
+                            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <Label text="🛡️" style="-fx-font-size: 48px;"/>
+                                <VBox spacing="5">
+                                    <Label text="Administrateurs" styleClass="label" style="-fx-font-size: 14px;"/>
+                                    <Label fx:id="lblTotalAdmins" text="0"
+                                           style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #4a4a4a;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+ 
+                        <!-- Carte 3: Total Clients -->
+                        <VBox spacing="10" styleClass="stat-card" GridPane.columnIndex="2">
+                            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <Label text="👤" style="-fx-font-size: 48px;"/>
+                                <VBox spacing="5">
+                                    <Label text="Clients" styleClass="label" style="-fx-font-size: 14px;"/>
+                                    <Label fx:id="lblTotalClients" text="0"
+                                           style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #a2d5ab;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </GridPane>
+                </VBox>
+
+                <!-- Section: Graphiques de Répartition -->
+                <VBox spacing="15" styleClass="card">
+                    <Label text="📊 Répartition des Utilisateurs" styleClass="section-title"/>
+                    <PieChart fx:id="chartUserRoles" legendSide="BOTTOM" prefHeight="400"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="700.0" prefWidth="900.0" spacing="0" styleClass="content-area" stylesheets="@global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Backoffice.TherapeuteController">
+   <children>
+      <!-- Header modéré -->
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" styleClass="header-section">
+         <children>
+            <VBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label text="Gestion des Thérapeutes" styleClass="header-title" />
+                  <Label text="Gérez les professionnels de santé et leurs profils." styleClass="header-subtitle" />
+               </children>
+            </VBox>
+            <Pane HBox.hgrow="ALWAYS" />
+            <HBox spacing="10" alignment="CENTER">
+               <Button onAction="#handleExportCsv" styleClass="btn-outline" text="📄 Export CSV" />
+               <Button onAction="#handleShowStats" styleClass="btn-outline" text="📊 Stats" />
+               <Button onAction="#handleRefresh" styleClass="btn-outline" text="↻ Actualiser" />
+            </HBox>
+         </children>
+      </HBox>
+      <!-- Barre d'outils modernisée -->
+      <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-padding: 30;">
+         <children>
+            <TextField fx:id="searchField" prefHeight="45.0" prefWidth="300.0" promptText="🔍 Rechercher un thérapeute..." />
+            <Button onAction="#handleSortAsc" styleClass="btn-outline" text="Date ↑" />
+            <Button onAction="#handleSortDesc" styleClass="btn-outline" text="Date ↓" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleAdd" prefHeight="45.0" prefWidth="200.0" styleClass="btn-primary" text="+ Ajouter Thérapeute" />
+         </children>
+      </HBox>
+      <!-- Cards Container -->
+      <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+         <content>
+            <FlowPane fx:id="cardsContainer" hgap="25.0" vgap="25.0" style="-fx-padding: 0 30 30 30;" />
+         </content>
+      </ScrollPane>
+      <!-- Formulaire modernisé -->
+      <VBox fx:id="formPane" spacing="25.0" styleClass="card" style="-fx-margin: 30;" visible="false" managed="false" maxWidth="800.0" alignment="TOP_CENTER">
+         <children>
+            <Label fx:id="formTitle" text="Détails du Thérapeute" styleClass="section-title" />
+            <GridPane hgap="20.0" vgap="20.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               <children>
+                  <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <Label text="NOM" styleClass="label" />
+                     <TextField fx:id="nomField" />
+                  </VBox>
+                  <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label text="PRÉNOM" styleClass="label" />
+                     <TextField fx:id="prenomField" />
+                  </VBox>
+                  <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label text="SPÉCIALITÉ" styleClass="label" />
+                     <TextField fx:id="specialiteField" />
+                  </VBox>
+                  <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <Label text="EMAIL" styleClass="label" />
+                     <TextField fx:id="emailField" />
+                  </VBox>
+                  <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <Label text="TÉLÉPHONE" styleClass="label" />
+                     <TextField fx:id="telephoneField" />
+                  </VBox>
+                   <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                      <Label text="PHOTO DE PROFIL" styleClass="label" />
+                      <HBox spacing="10">
+                         <TextField fx:id="imageField" HBox.hgrow="ALWAYS" editable="false" promptText="Lien de l'image..." />
+                         <Button onAction="#handleChooseImage" styleClass="btn-primary" text="Parcourir" />
+                      </HBox>
+                   </VBox>
+                   <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                      <Label text="CERTIFICAT (PDF/Image)" styleClass="label" />
+                      <HBox spacing="10">
+                         <TextField fx:id="certificatField" HBox.hgrow="ALWAYS" editable="false" promptText="Lien du certificat..." />
+                         <Button onAction="#handleChooseCertificat" styleClass="btn-primary" text="Parcourir" />
+                      </HBox>
+                   </VBox>
+               </children>
+            </GridPane>
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+               <children>
+                  <Button onAction="#handleSave" prefWidth="180.0" styleClass="btn-primary" text="💾 Enregistrer" />
+                  <Button onAction="#handleCancelForm" prefWidth="120.0" styleClass="btn-secondary" text="Annuler" />
+               </children>
+            </HBox>
+            <Label fx:id="errorLabel" styleClass="error-message" visible="false" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

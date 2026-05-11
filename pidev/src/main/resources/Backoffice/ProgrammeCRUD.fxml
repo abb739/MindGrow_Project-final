@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="700.0" prefWidth="900.0" spacing="0.0" styleClass="content-area" stylesheets="@global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Backoffice.ProgrammeController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" styleClass="header-section">
+         <children>
+            <VBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label text="Gestion des Programmes" styleClass="header-title" />
+                  <Label text="Organisez vos parcours de soins et catégories de bien-être." styleClass="header-subtitle" />
+               </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleClearProg" styleClass="btn-primary" text="+ Nouveau Programme" />
+         </children>
+      </HBox>
+      
+      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="custom-tab-pane">
+        <tabs>
+          <!-- Onglet Catégories -->
+          <Tab text="Catégories">
+            <content>
+              <HBox spacing="30.0" style="-fx-padding: 30;">
+                <children>
+                  <!-- Formulaire Catégorie -->
+                  <ScrollPane fitToWidth="true" prefWidth="360.0" minWidth="360.0" styleClass="form-scroll-pane" hbarPolicy="NEVER">
+                    <content>
+                      <VBox spacing="25.0" styleClass="card">
+                        <children>
+                            <Label text="Détails de la Catégorie" styleClass="section-title" />
+                            <VBox spacing="8">
+                               <children>
+                                  <Label text="NOM" styleClass="label" />
+                                  <TextField fx:id="catNomField" promptText="Ex: Méditation" />
+                               </children>
+                            </VBox>
+                            <VBox spacing="8">
+                               <children>
+                                  <Label text="DESCRIPTION" styleClass="label" />
+                                  <TextArea fx:id="catDescArea" prefHeight="120.0" promptText="Description courte..." wrapText="true" />
+                               </children>
+                            </VBox>
+                            <HBox spacing="15.0" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+                               <children>
+                                  <Button mnemonicParsing="false" onAction="#handleSaveCategorie" prefWidth="150.0" styleClass="btn-primary" text="Enregistrer" />
+                                  <Button mnemonicParsing="false" onAction="#handleClearCat" prefWidth="100.0" styleClass="btn-secondary" text="Vider" />
+                               </children>
+                            </HBox>
+                        </children>
+                      </VBox>
+                    </content>
+                  </ScrollPane>
+                  <!-- Table Catégories -->
+                  <TableView fx:id="catTable" HBox.hgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="colCatId" prefWidth="70.0" text="ID" />
+                      <TableColumn fx:id="colCatNom" prefWidth="180.0" text="Nom" />
+                      <TableColumn fx:id="colCatDesc" prefWidth="300.0" text="Description" />
+                      <TableColumn fx:id="colCatAction" prefWidth="120.0" text="Actions" />
+                    </columns>
+                  </TableView>
+                </children>
+              </HBox>
+            </content>
+          </Tab>
+          
+          <!-- Onglet Programmes -->
+          <Tab text="Programmes">
+            <content>
+               <VBox spacing="20.0" style="-fx-padding: 30;">
+                  <children>
+                     <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <!-- Formulaire Programme -->
+                           <ScrollPane fitToWidth="true" prefWidth="410.0" minWidth="410.0" styleClass="form-scroll-pane" hbarPolicy="NEVER">
+                              <content>
+                                 <VBox spacing="25.0" styleClass="card">
+                                    <children>
+                                       <Label text="Détails du Programme" styleClass="section-title" />
+                                       <VBox spacing="8">
+                                          <Label text="CATÉGORIE" styleClass="label" />
+                                          <ComboBox fx:id="catCombo" prefWidth="Infinity" promptText="Sélectionner..." />
+                                       </VBox>
+                                       <VBox spacing="8">
+                                          <Label text="TITRE" styleClass="label" />
+                                          <TextField fx:id="progTitreField" promptText="Titre du programme" />
+                                       </VBox>
+                                       <VBox spacing="8">
+                                          <Label text="DESCRIPTION" styleClass="label" />
+                                          <TextArea fx:id="progDescArea" prefHeight="100.0" promptText="Description complète..." wrapText="true" />
+                                       </VBox>
+                                       
+                                       <VBox spacing="10.0">
+                                          <Label text="MÉDIAS (IMAGES &amp; VIDÉOS)" styleClass="label" />
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <TextField fx:id="progImageField" promptText="URL Image" HBox.hgrow="ALWAYS" editable="false" />
+                                                <Button mnemonicParsing="false" onAction="#handleBrowseImage" styleClass="btn-primary" text="+" />
+                                             </children>
+                                          </HBox>
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <TextField fx:id="progVideoField" promptText="URL Vidéo (Youtube context)" HBox.hgrow="ALWAYS" editable="false" />
+                                                <Button mnemonicParsing="false" onAction="#handleBrowseVideo" styleClass="btn-primary" text="+" />
+                                             </children>
+                                          </HBox>
+                                       </VBox>
+        
+                                       <HBox spacing="12.0" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+                                          <children>
+                                             <Button fx:id="progSaveBtn" mnemonicParsing="false" onAction="#handleSaveProgramme" prefWidth="180.0" styleClass="btn-primary" text="Ajouter Programme" />
+                                             <Button mnemonicParsing="false" onAction="#handleClearProg" prefWidth="90.0" styleClass="btn-secondary" text="Vider" />
+                                             <Button mnemonicParsing="false" onAction="#handleShowStats" prefWidth="90.0" styleClass="btn-outline" text="📊 Stats" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </content>
+                           </ScrollPane>
+                           
+                           <!-- Container for Cards -->
+                           <VBox spacing="20.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                 <HBox spacing="10.0" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 15 25;">
+                                    <children>
+                                       <Label text="Aperçu des Programmes" styleClass="section-title" style="-fx-padding: 0;" />
+                                       <Region HBox.hgrow="ALWAYS" />
+                                       <Label text="Cartes interactives" styleClass="header-subtitle" />
+                                    </children>
+                                 </HBox>
+                                 <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+                                    <content>
+                                       <FlowPane fx:id="progCardsContainer" hgap="25.0" vgap="25.0" style="-fx-padding: 10; -fx-background-color: transparent;" />
+                                    </content>
+                                 </ScrollPane>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>

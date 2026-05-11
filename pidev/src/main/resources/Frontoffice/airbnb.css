@@ -1,0 +1,173 @@
+/*
+ * MindGrow Frontoffice - Design System Airbnb-like
+ * JavaFX 17 - Typographie Inter / Segoe UI
+ */
+
+/* ========== ROOT & GLOBAL ========== */
+.root {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* ========== TYPOGRAPHIE ========== */
+.hero-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.hero-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+}
+
+/* ========== HERO SECTION ========== */
+.hero-section {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #A2D5AB 0%, #8cc497 100%);
+    -fx-alignment: center;
+    -fx-padding: 60 40 60 40;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.main-container {
+    -fx-background-color: #f7f7f7;
+}
+
+.front-container {
+    -fx-background-color: #f7f7f7;
+}
+
+.front-container-main {
+    -fx-padding: 40;
+}
+
+/* ========== FILTER BAR (Barre flottante) ========== */
+.filter-bar {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 20, 0, 0, 6);
+    -fx-padding: 20 24 20 24;
+}
+
+.filter-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6b6b6b;
+}
+
+.filter-input {
+    -fx-background-color: #f7f7f7;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-padding: 12 16;
+    -fx-font-size: 14px;
+}
+
+.filter-input:focused {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(162, 213, 171, 0.25), 10, 0, 0, 0);
+    -fx-border-color: #A2D5AB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8;
+}
+
+.filter-combo {
+    -fx-background-color: #f7f7f7;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16;
+    -fx-font-size: 14px;
+}
+
+.filter-combo:focused {
+    -fx-background-color: white;
+}
+
+.filter-date {
+    -fx-background-color: #f7f7f7;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16;
+    -fx-font-size: 14px;
+}
+
+.prix-slider .track {
+    -fx-background-color: #e5e5e5;
+    -fx-background-radius: 4;
+}
+
+.prix-slider .thumb {
+    -fx-background-color: #A2D5AB;
+    -fx-background-radius: 12;
+}
+
+.prix-max-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #A2D5AB;
+}
+
+.btn-reset {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6b6b6b;
+    -fx-font-size: 13px;
+    -fx-padding: 10 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.btn-reset:hover {
+    -fx-background-color: #f7f7f7;
+    -fx-text-fill: #A2D5AB;
+}
+
+/* ========== CHIP ========== */
+.chip {
+    -fx-background-color: #f7f7f7;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.chip:hover {
+    -fx-background-color: #eaeaea;
+}
+
+/* ========== SCROLL PANE ========== */
+.cards-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.cards-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ========== FLOWPANE CARDS CONTAINER ========== */
+.cards-container {
+    -fx-padding: 20 0 40 0;
+}
+
+/* ===== SECTIONS ===== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 5);
+}
+
+.btn-reserver {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #A2D5AB 0%, #8cc497 100%);
+    -fx-text-fill: #4a4a4a;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 14 28;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(162, 213, 171, 0.3), 10, 0, 0, 4);
+}
+
+.btn-reserver:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #8cc497 0%, #7eb389 100%);
+    -fx-translate-y: -1px;
+}
